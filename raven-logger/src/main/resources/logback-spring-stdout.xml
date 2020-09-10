@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="logback/base-define.xml" />
+    <include resource="logback/custom-appender.xml"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+            <providers>
+                <pattern>
+                    <pattern>${LOG_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- 控制台输出 -->
+    <appender name="EVENT-STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+            <providers>
+                <pattern>
+                    <pattern>${EVENT_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <logger name="EVENT" additivity="false" level="INFO">
+        <appender-ref ref="EVENT-STDOUT"/>
+    </logger>
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

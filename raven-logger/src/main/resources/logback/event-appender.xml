@@ -1,0 +1,28 @@
+<included>
+
+    <!--root file -->
+    <appender name="EVENT-FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/event.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/event.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>${MAX_INDEX}</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </triggeringPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+            <providers>
+                <pattern>
+                    <pattern>${EVENT_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <logger name="EVENT" additivity="false" level="INFO">
+        <appender-ref ref="EVENT-FILE-APPENDER"/>
+    </logger>
+
+</included>

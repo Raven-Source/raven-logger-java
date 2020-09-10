@@ -1,0 +1,56 @@
+<included>
+
+    <define name="appId" class="org.raven.logger.property.AppIdDefiner"/>
+    <define name="hostAddress" class="org.raven.logger.property.HostAddressDefiner"/>
+    <define name="hostName" class="org.raven.logger.property.HostNameDefiner"/>
+    <define name="env" class="org.raven.logger.property.EnvDefiner"/>
+
+    <conversionRule conversionWord="namespace" converterClass="org.raven.logger.converter.NamespaceConverter"/>
+    <conversionRule conversionWord="traceId" converterClass="org.raven.logger.converter.TraceIdConverter"/>
+    <conversionRule conversionWord="code" converterClass="org.raven.logger.converter.CodeConverter"/>
+    <conversionRule conversionWord="ext" converterClass="org.raven.logger.converter.ExtConverter"/>
+    <conversionRule conversionWord="exceptionName" converterClass="org.raven.logger.converter.ExceptionNameConverter"/>
+    <conversionRule conversionWord="tag" converterClass="org.raven.logger.converter.TagConverter"/>
+    <conversionRule conversionWord="uid" converterClass="org.raven.logger.converter.UserIdConverter"/>
+
+    <property name="LOG_PATTERN" value='{
+        "env": "${env:-}",
+        "ns": "%namespace",
+        "ip": "${hostAddress:-}",
+        "hn": "${hostName:-}",
+        "traceId": "%traceId",
+        "uid": "%uid",
+        "time": "%d{yyyy-MM-dd HH:mm:ss.SSSZ}",
+        "appId": "${appId}",
+        "class": "%logger",
+        "method": "%method",
+        "line": "%line",
+        "thread": "%thread",
+        "level": "%level",
+        "code": "%code",
+        "msg": "%message",
+        "ex": "%exceptionName",
+        "stack": "%exception",
+        "ext": "#tryJson{%ext}",
+        "tag": "#tryJson{%tag}",
+        "dt": 100
+        }'/>
+
+    <property name="EVENT_PATTERN" value='
+        {
+        "env": "${env:-}",
+        "ns": "%namespace",
+        "ip": "${hostAddress:-}",
+        "hn": "${hostName:-}",
+        "traceId": "%traceId",
+        "uid": "%uid",
+        "time": "%X{time}",
+        "appId": "${appId}",
+        "eventId": "%X{eventId:-}",
+        "value": "#asDouble{%X{eventValue}}",
+        "ext": "#tryJson{%ext}",
+        "tag": "#tryJson{%tag}",
+        "dt": 1
+        }'/>
+
+</included>
