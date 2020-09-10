@@ -13,7 +13,7 @@
 
     <include resource="logback/base-define.xml" />
     <!-- log base path -->
-    <property name="LOG_HOME" value="/data/logs/${appId}"/>
+    <property name="LOG_HOME" value="/data/applogs/${appId}"/>
 
     <include resource="logback/error-appender.xml"/>
     <include resource="logback/info-appender.xml"/>
