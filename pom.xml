@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
         <module>raven-logger</module>
     </modules>
@@ -17,6 +17,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <encoding>UTF-8</encoding>
+
+        <raven.logger.version>${project.version}</raven.logger.version>
 
         <opentracing-api.version>0.30.0</opentracing-api.version>
         <skywalking.version>8.1.0</skywalking.version>
