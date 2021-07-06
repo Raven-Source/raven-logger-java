@@ -21,7 +21,11 @@ public abstract class AbstractConverter<T> extends ClassicConverter {
 
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-        target = (Class<T>) params[0];
+        if (params[0] instanceof ParameterizedType) {
+            target = (Class<T>) ((ParameterizedType) params[0]).getRawType();
+        } else {
+            target = (Class<T>) params[0];
+        }
     }
 
     @Override
