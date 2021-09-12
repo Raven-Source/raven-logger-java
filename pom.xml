@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <modules>
         <module>raven-logger</module>
     </modules>
@@ -20,11 +20,12 @@
 
         <raven.logger.version>${project.version}</raven.logger.version>
 
-        <opentracing-api.version>0.30.0</opentracing-api.version>
-        <skywalking.version>8.1.0</skywalking.version>
-        <logback.version>1.2.3</logback.version>
-        <logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
-        <raven-serializer-withJackson.version>3.0.1</raven-serializer-withJackson.version>
+        <opentracing-api.version>0.33.0</opentracing-api.version>
+        <skywalking.version>8.7.0</skywalking.version>
+        <logback.version>1.2.6</logback.version>
+        <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
+        <raven-serializer-withJackson.version>3.1.0</raven-serializer-withJackson.version>
+        <raven-commons.version>3.1.0</raven-commons.version>
 
     </properties>
 

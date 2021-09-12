@@ -4,7 +4,7 @@ import ch.qos.logback.classic.pattern.ClassicConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.ThrowableProxy;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
+import org.raven.commons.util.StringUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
  * @author yi.liang
  * date 2020.1.6 00:00
  */
+@SuppressWarnings("unchecked")
 public abstract class AbstractConverter<T> extends ClassicConverter {
     protected final Class<T> target;
 

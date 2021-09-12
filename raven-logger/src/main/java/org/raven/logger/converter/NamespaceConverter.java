@@ -1,7 +1,7 @@
 package org.raven.logger.converter;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
+import org.raven.commons.util.StringUtils;
 import org.raven.logger.FieldsConstant;
 import org.raven.logger.Namespacer;
 import org.raven.logger.PropertiesUtil;

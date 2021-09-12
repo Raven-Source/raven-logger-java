@@ -1,7 +1,6 @@
 package org.raven.logger;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.MappingJsonFactory;
+import com.fasterxml.jackson.core.JsonFactory;
 import net.logstash.logback.decorate.JsonFactoryDecorator;
 
 /**
@@ -11,10 +10,9 @@ import net.logstash.logback.decorate.JsonFactoryDecorator;
 public class LogJsonFactoryDecorator implements JsonFactoryDecorator {
 
     @Override
-    public MappingJsonFactory decorate(MappingJsonFactory factory) {
-        // 禁用对非ascii码进行escape编码的特性
+    public JsonFactory decorate(JsonFactory factory) {
+
         factory.setCodec(JsonUtil.getMapper());
-        factory.disable(JsonGenerator.Feature.ESCAPE_NON_ASCII);
         return factory;
     }
 

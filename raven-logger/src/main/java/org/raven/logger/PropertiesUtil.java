@@ -1,6 +1,6 @@
 package org.raven.logger;
 
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
+import org.raven.commons.util.StringUtils;
 import org.raven.logger.property.AppIdDefiner;
 
 import java.io.InputStream;
