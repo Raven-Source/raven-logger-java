@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <modules>
         <module>raven-logger</module>
     </modules>
