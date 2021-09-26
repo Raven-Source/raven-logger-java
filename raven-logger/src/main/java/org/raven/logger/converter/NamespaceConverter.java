@@ -14,7 +14,7 @@ import org.slf4j.MDC;
  */
 public class NamespaceConverter extends AbstractConverter<Namespacer> {
 
-    private static final String PROPERTIES_FILE = "/META-INF/app.properties";
+    private static final String PROPERTIES_FILE = "META-INF/app.properties";
     private static String ns = StringUtils.EMPTY;
 
     public NamespaceConverter() {

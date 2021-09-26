@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <modules>
         <module>raven-logger</module>
     </modules>
@@ -24,8 +24,8 @@
         <skywalking.version>8.7.0</skywalking.version>
         <logback.version>1.2.6</logback.version>
         <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
-        <raven-serializer-withJackson.version>3.1.0</raven-serializer-withJackson.version>
-        <raven-commons.version>3.1.0</raven-commons.version>
+        <raven-serializer-withJackson.version>3.1.2</raven-serializer-withJackson.version>
+        <raven-commons.version>3.1.2</raven-commons.version>
 
     </properties>
 

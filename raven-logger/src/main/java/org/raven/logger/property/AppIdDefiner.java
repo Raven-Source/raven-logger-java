@@ -10,7 +10,7 @@ import org.raven.logger.PropertiesUtil;
  */
 public class AppIdDefiner extends PropertyDefinerBase {
 
-    private static final String PROPERTIES_FILE = "/META-INF/app.properties";
+    private static final String PROPERTIES_FILE = "META-INF/app.properties";
     private static String appId = StringUtils.EMPTY;
 
     public AppIdDefiner() {
