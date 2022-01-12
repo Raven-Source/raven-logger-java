@@ -7,7 +7,7 @@
     <groupId>io.github.raven-source</groupId>
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <modules>
         <module>raven-logger</module>
     </modules>
@@ -22,7 +22,7 @@
 
         <opentracing-api.version>0.33.0</opentracing-api.version>
         <skywalking.version>8.7.0</skywalking.version>
-        <logback.version>1.2.6</logback.version>
+        <logback.version>1.2.10</logback.version>
         <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
         <raven-serializer-withJackson.version>3.1.2</raven-serializer-withJackson.version>
         <raven-commons.version>3.1.2</raven-commons.version>
@@ -80,7 +80,7 @@
         </developer>
     </developers>
 
-    <!--<distributionManagement>
+    <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
@@ -88,17 +88,6 @@
         <repository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>-->
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>maven-snapshots</id>
-            <url>https://nexus.opsfun.com/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>maven-releases</id>
-            <url>https://nexus.opsfun.com/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
@@ -127,7 +116,7 @@
             </plugin>
 
 
-            <!--<plugin>
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.8</version>
@@ -137,7 +126,7 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -183,6 +172,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- mvn versions:set -DprocessAllModules=true -DnewVersion=1.x-SNAPSHOT -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
             </plugin>
         </plugins>
 
