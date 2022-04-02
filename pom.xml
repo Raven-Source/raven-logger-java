@@ -30,8 +30,8 @@
 
         <logback.version>1.2.11</logback.version>
         <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
-        <raven-serializer-withJackson.version>4.0.0</raven-serializer-withJackson.version>
-        <raven-commons.version>4.0.0</raven-commons.version>
+        <raven-serializer-withJackson.version>4.0.1</raven-serializer-withJackson.version>
+        <raven-commons.version>4.0.1</raven-commons.version>
 
     </properties>
 

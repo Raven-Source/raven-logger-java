@@ -84,16 +84,12 @@ public class LoggerTest {
         //{...,"code":"","msg":"log tags","ex":"-","stack":"","ext":null,"tag":["abc=123","abc=456"]}
     }
 
-    /**
-     * 加载外部的logback配置文件
-     *
-     * @param fileName 配置文件路径
-     */
     public void load(String fileName) throws Exception {
         ClassLoader classLoader = Coder.class.getClassLoader();
         URL url = classLoader.getResource(fileName);
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
 
+        assert url != null;
         File externalConfigFile = new File(url.getPath());
 
         if (!externalConfigFile.exists()) {
