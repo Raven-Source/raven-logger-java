@@ -1,4 +1,6 @@
-package org.raven.logger;
+package org.raven.logger.test;
+
+import org.raven.logger.Coder;
 
 public class BusException extends Exception implements Coder {
 

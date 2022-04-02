@@ -1,4 +1,4 @@
-package org.raven.logger;
+package org.raven.logger.test;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -1,33 +1,43 @@
-package org.raven.logger;
+package org.raven.logger.test;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.core.joran.spi.JoranException;
 import ch.qos.logback.core.util.StatusPrinter;
-import org.junit.Before;
-import org.junit.Test;
+import org.raven.logger.Coder;
+import org.raven.logger.Extender;
+import org.raven.logger.Tagger;
 import org.raven.logger.tag.NumberValueTag;
 import org.raven.logger.tag.StringValueTag;
 import org.raven.logger.tag.Tags;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+@Component
 public class LoggerTest {
 
     private Logger logger;
 
-    @Before
-    public void setup() throws Exception {
-        load("logback-spring.xml");
+    @PostConstruct
+    public void run() {
+        setup();
+        coderTest();
+        extenderTest();
+        tagsTest();
+    }
+
+    public void setup() {
+//        load("logback-spring.xml");
 
         logger = LoggerFactory.getLogger(LoggerTest.class);
     }
 
-    @Test
     public void coderTest() {
         logger.debug("Extender test", Coder.of("111"));  //debug日志记录code码111
         logger.info("Extender test", Coder.of("110"));   //info日志记录code码110
@@ -39,7 +49,6 @@ public class LoggerTest {
         logger.error("", new BusException("bus exception", "111"));
     }
 
-    @Test
     public void extenderTest() {
 
         Order order = new Order();
@@ -54,7 +63,6 @@ public class LoggerTest {
         logger.info("Extender test", Extender.map().addExtValue("id", "123").addExtValue("val", 456));
     }
 
-    @Test
     public void tagsTest() {
 
         logger.debug("log tags", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
@@ -70,7 +78,7 @@ public class LoggerTest {
         //{...,"code":"err-code","message":"log tags","exception":"java.lang.NullPointerException","tag":["sping.mvc","redis"],"stackTrace":"java.lang.NullPointerException: some error\r\n\tat com.example.demo.controller.HomeController.tags
 
         logger.warn("log tags", Tagger.of(
-                StringValueTag.of("abc", "123"), NumberValueTag.of("abc", 456)
+                        StringValueTag.of("abc", "123"), NumberValueTag.of("abc", 456)
                 )
         );
         //{...,"code":"","msg":"log tags","ex":"-","stack":"","ext":null,"tag":["abc=123","abc=456"]}
@@ -80,10 +88,8 @@ public class LoggerTest {
      * 加载外部的logback配置文件
      *
      * @param fileName 配置文件路径
-     * @throws IOException
-     * @throws JoranException
      */
-    public void load(String fileName) throws IOException, JoranException {
+    public void load(String fileName) throws Exception {
         ClassLoader classLoader = Coder.class.getClassLoader();
         URL url = classLoader.getResource(fileName);
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
@@ -106,7 +112,7 @@ public class LoggerTest {
 
                 } else {
 
-                    JoranConfigurator configurator = new JoranConfigurator();
+                    JoranConfigurator configurator = (JoranConfigurator) Class.forName("org.springframework.boot.logging.logback.SpringBootJoranConfigurator").newInstance();
                     configurator.setContext(lc);
                     lc.reset();
                     configurator.doConfigure(externalConfigFile);
