@@ -6,20 +6,22 @@
 
     <!-- log maxIndex -->
     <springProperty scope="context" name="MAX_INDEX" source="spring.logback.max-index" defaultValue="5"/>
+    <springProperty scope="context" name="LOG_HOME" source="logging.file.path" defaultValue="/data/applogs/${appId}" />
 
     <conversionRule converterClass="org.springframework.boot.logging.logback.ColorConverter" conversionWord="clr"/>
     <conversionRule converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"
                     conversionWord="wEx"/>
 
     <include resource="logback/base-define.xml" />
-    <!-- log base path -->
-    <property name="LOG_HOME" value="/data/applogs/${appId}"/>
+<!--    &lt;!&ndash; log base path &ndash;&gt;-->
+<!--    <property name="LOG_HOME" value="/data/applogs/${appId}"/>-->
+
+    <include resource="logback/custom-appender.xml"/>
 
     <include resource="logback/error-appender.xml"/>
     <include resource="logback/info-appender.xml"/>
     <include resource="logback/warn-appender.xml"/>
     <include resource="logback/event-appender.xml"/>
-    <include resource="logback/custom-appender.xml"/>
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
