@@ -23,12 +23,6 @@ public class AsyncDeliveryStrategy implements DeliveryStrategy {
 
     private ExecutorService executor;
 
-    public AsyncDeliveryStrategy() {
-
-//        executor = Executors.newFixedThreadPool(tasks);
-
-    }
-
     @Override
     public <K, V, E> boolean send(Producer<K, V> producer, ProducerRecord<K, V> record, E event, FailedDeliveryCallback<E> failedDeliveryCallback) {
 

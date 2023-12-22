@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <springProperty scope="context" name="topic-prefix" source="logging.kafka.topic-prefix" defaultValue="applogs-"/>
     <springProperty scope="context" name="logging.kafka.bootstrap.servers" source="logging.kafka.bootstrap-servers" />
     <springProperty scope="context" name="logging.kafka.acks" source="logging.kafka.producer.acks" defaultValue="0" />
     <springProperty scope="context" name="logging.kafka.batch.size" source="logging.kafka.producer.batch-size" defaultValue="16384" />
@@ -13,7 +12,6 @@
 
     <include resource="logback/base-define.xml" />
     <!-- log base path -->
-    <!--    <property name="LOG_HOME" value="/data/applogs/${appId}"/>-->
 
 <!--    <include resource="logback/custom-appender.xml"/>-->
 
