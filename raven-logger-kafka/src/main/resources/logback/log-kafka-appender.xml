@@ -1,0 +1,42 @@
+<included>
+
+    <!--root file -->
+    <appender name="LOG-KAFKA-APPENDER" class="org.raven.logger.KafkaAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+            <providers>
+                <pattern>
+                    <pattern>${LOG_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+<!--        <topic>applogs-%level</topic>-->
+        <topicProvider>
+            <pattern>applogs-%lower{%level}</pattern>
+        </topicProvider>
+        <!-- we don't care how the log messages will be partitioned  -->
+        <keyingStrategy class="org.raven.logger.keying.NoKeyKeyingStrategy" />
+
+        <!-- use async delivery. the application threads are not blocked by logging -->
+        <deliveryStrategy class="org.raven.logger.delivery.AsyncDeliveryStrategy" />
+
+        <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+        <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+        <!-- bootstrap.servers is the only mandatory producerConfig -->
+<!--        <producerConfig>bootstrap.servers=${BOOTSTRAP_SERVERS}</producerConfig>-->
+        <!-- don't wait for a broker to ack the reception of a batch.  -->
+<!--        <producerConfig>bootstrap-servers=${kafka-bootstrap-servers}</producerConfig>-->
+        <!-- wait up to 1000ms and collect log messages before sending them as a batch -->
+<!--        <producerConfig>linger.ms=1000</producerConfig>-->
+        <!-- even if the producer buffer runs full, do not block the application but start to drop messages -->
+<!--        <producerConfig>max.block.ms=0</producerConfig>-->
+        <!-- define a client-id that you use to identify yourself against the kafka broker -->
+<!--        <producerConfig>client.id=${appId}-logback</producerConfig>-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+</included>

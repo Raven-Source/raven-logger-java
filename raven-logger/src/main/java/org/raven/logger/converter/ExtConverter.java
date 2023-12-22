@@ -7,7 +7,7 @@ import org.raven.logger.JsonUtil;
  * @author yi.liang
  * date 2019.12.10 17:05
  */
-public class ExtConverter extends AbstractConverter<Extender<?>> {
+public class ExtConverter extends TargetConverter<Extender<?>> {
 
     @Override
     protected String targetConvert(Extender<?> tag) {

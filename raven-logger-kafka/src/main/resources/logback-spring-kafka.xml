@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="topic-prefix" source="logging.kafka.topic-prefix" defaultValue="applogs-"/>
+    <springProperty scope="context" name="logging.kafka.bootstrap.servers" source="logging.kafka.bootstrap-servers" />
+    <springProperty scope="context" name="logging.kafka.acks" source="logging.kafka.producer.acks" defaultValue="0" />
+    <springProperty scope="context" name="logging.kafka.batch.size" source="logging.kafka.producer.batch-size" defaultValue="16384" />
+    <springProperty scope="context" name="logging.kafka.linger.ms" source="logging.kafka.producer.properties.linger" defaultValue="200" />
+
+    <conversionRule converterClass="org.springframework.boot.logging.logback.ColorConverter" conversionWord="clr"/>
+    <conversionRule converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"
+                    conversionWord="wEx"/>
+
+    <include resource="logback/base-define.xml" />
+    <!-- log base path -->
+    <!--    <property name="LOG_HOME" value="/data/applogs/${appId}"/>-->
+
+<!--    <include resource="logback/custom-appender.xml"/>-->
+
+    <include resource="logback/event-kafka-appender.xml"/>
+    <include resource="logback/log-kafka-appender.xml"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 日志输出级别 -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOG-KAFKA-APPENDER"/>
+        <appender-ref ref="EVENT-KAFKA-APPENDER"/>
+    </root>
+
+</configuration>

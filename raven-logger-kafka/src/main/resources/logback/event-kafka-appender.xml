@@ -1,0 +1,26 @@
+<included>
+
+    <appender name="EVENT-KAFKA-APPENDER" class="org.raven.logger.KafkaAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
+            <providers>
+                <pattern>
+                    <pattern>${LOG_PATTERN}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <topic>applogs-event</topic>
+        <!-- we don't care how the log messages will be partitioned  -->
+        <keyingStrategy class="org.raven.logger.keying.NoKeyKeyingStrategy"/>
+
+        <!-- use async delivery. the application threads are not blocked by logging -->
+        <deliveryStrategy class="org.raven.logger.delivery.AsyncDeliveryStrategy"/>
+
+<!--        <producerConfig>client.id=${appId}-logback</producerConfig>-->
+    </appender>
+
+    <logger name="EVENT" additivity="false" level="INFO">
+        <appender-ref ref="EVENT-KAFKA-APPENDER"/>
+    </logger>
+
+</included>

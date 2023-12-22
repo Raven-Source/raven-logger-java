@@ -7,7 +7,7 @@ import org.raven.logger.Tagger;
  * @author yi.liang
  * date 2019.12.10 17:05
  */
-public class TagConverter extends AbstractConverter<Tagger> {
+public class TagConverter extends TargetConverter<Tagger> {
 
     @Override
     protected String targetConvert(Tagger tag) {

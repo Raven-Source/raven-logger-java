@@ -7,7 +7,7 @@ import org.raven.logger.Coder;
  * @author yi.liang
  * date 2019.12.10 17:05
  */
-public class CodeConverter extends AbstractConverter<Coder> {
+public class CodeConverter extends TargetConverter<Coder> {
 
     @Override
     protected String targetConvert(Coder tag) {

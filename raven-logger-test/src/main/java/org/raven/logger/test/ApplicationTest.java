@@ -14,11 +14,16 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class ApplicationTest {
 
-    public static void main(String[] args) {
+    public static volatile boolean isDead = false;
+
+    public static void main(String[] args) throws InterruptedException {
 
         SpringApplication springApplication = new SpringApplication(ApplicationTest.class);
         springApplication.run(args);
 
+        while (!isDead){
+            Thread.sleep(4000);
+        }
     }
 
 }

@@ -5,6 +5,8 @@
     <define name="hostName" class="org.raven.logger.property.HostNameDefiner"/>
     <define name="env" class="org.raven.logger.property.EnvDefiner"/>
 
+    <conversionRule conversionWord="lower" converterClass="org.raven.logger.converter.LowerCaseConverter"/>
+    <conversionRule conversionWord="upper" converterClass="org.raven.logger.converter.UpperCaseConverter"/>
     <conversionRule conversionWord="namespace" converterClass="org.raven.logger.converter.NamespaceConverter"/>
     <conversionRule conversionWord="traceId" converterClass="org.raven.logger.converter.TraceIdConverter"/>
     <conversionRule conversionWord="code" converterClass="org.raven.logger.converter.CodeConverter"/>
@@ -12,15 +14,17 @@
     <conversionRule conversionWord="exceptionName" converterClass="org.raven.logger.converter.ExceptionNameConverter"/>
     <conversionRule conversionWord="tag" converterClass="org.raven.logger.converter.TagConverter"/>
     <conversionRule conversionWord="uid" converterClass="org.raven.logger.converter.UserIdConverter"/>
+<!--    <conversionRule conversionWord="logLevel" converterClass="org.raven.logger.converter.LogLevelConverter"/>-->
 
     <property name="LOG_PATTERN" value='{
+        "@timestamp": "%d{yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX}",
         "env": "${env:-}",
         "ns": "%namespace",
         "ip": "${hostAddress:-}",
         "hn": "${hostName:-}",
         "traceId": "%traceId",
         "uid": "%uid",
-        "time": "%d{yyyy-MM-dd HH:mm:ss.SSSZ}",
+        "time": "%d{yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSZ}",
         "appId": "${appId}",
         "class": "%logger",
         "method": "%method",
@@ -38,6 +42,7 @@
 
     <property name="EVENT_PATTERN" value='
         {
+        "@timestamp": "%d{yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX}",
         "env": "${env:-}",
         "ns": "%namespace",
         "ip": "${hostAddress:-}",

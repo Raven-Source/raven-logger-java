@@ -13,7 +13,7 @@
                     conversionWord="wEx"/>
 
     <include resource="logback/base-define.xml" />
-<!--    &lt;!&ndash; log base path &ndash;&gt;-->
+    <!-- log base path -->
 <!--    <property name="LOG_HOME" value="/data/applogs/${appId}"/>-->
 
     <include resource="logback/custom-appender.xml"/>

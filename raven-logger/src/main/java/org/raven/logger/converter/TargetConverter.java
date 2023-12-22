@@ -15,10 +15,10 @@ import java.lang.reflect.Type;
  * date 2020.1.6 00:00
  */
 @SuppressWarnings("unchecked")
-public abstract class AbstractConverter<T> extends ClassicConverter {
+public abstract class TargetConverter<T> extends ClassicConverter {
     protected final Class<T> target;
 
-    public AbstractConverter() {
+    public TargetConverter() {
 
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
