@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.errors.TimeoutException;
 
-import java.io.IOException;
 import java.util.concurrent.*;
 
 public class AsyncDeliveryStrategy implements DeliveryStrategy {
