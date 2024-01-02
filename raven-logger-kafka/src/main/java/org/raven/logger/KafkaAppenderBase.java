@@ -41,7 +41,7 @@ public abstract class KafkaAppenderBase<E> extends UnsynchronizedAppenderBase<E>
     protected boolean appendTimestamp = true;
 
     @Getter
-    protected Map<String, Object> producerConfig = new HashMap<String, Object>();
+    protected Map<String, Object> producerConfig = new HashMap<>();
 
     @Getter
     @Setter

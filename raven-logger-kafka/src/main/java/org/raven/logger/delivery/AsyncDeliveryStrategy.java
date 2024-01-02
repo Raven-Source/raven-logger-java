@@ -15,11 +15,11 @@ public class AsyncDeliveryStrategy implements DeliveryStrategy {
 
     @Getter
     @Setter
-    private int jobs = 2;
+    private int worker = 4;
 
     @Getter
     @Setter
-    private int queueMaxSize = 5000;
+    private int queueMaxSize = 100000;
 
     private ExecutorService executor;
 
@@ -47,9 +47,10 @@ public class AsyncDeliveryStrategy implements DeliveryStrategy {
     @Override
     public void start() {
         started = true;
-        executor = new ThreadPoolExecutor(jobs, jobs,
+        executor = new ThreadPoolExecutor(worker, worker,
                 0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<>(queueMaxSize));
+                new LinkedBlockingQueue<>(queueMaxSize),
+                new ThreadPoolExecutor.DiscardOldestPolicy());
     }
 
     @Override
