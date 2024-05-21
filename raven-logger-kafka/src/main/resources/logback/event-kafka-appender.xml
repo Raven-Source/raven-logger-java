@@ -5,7 +5,7 @@
             <jsonFactoryDecorator class="org.raven.logger.LogJsonFactoryDecorator"/>
             <providers>
                 <pattern>
-                    <pattern>${LOG_PATTERN}</pattern>
+                    <pattern>${EVENT_PATTERN}</pattern>
                 </pattern>
             </providers>
         </encoder>
