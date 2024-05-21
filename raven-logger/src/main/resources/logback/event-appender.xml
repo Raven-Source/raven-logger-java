@@ -1,7 +1,7 @@
 <included>
 
     <!--root file -->
-    <appender name="EVENT-FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="BASE-FILE-EVENT" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/event.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <fileNamePattern>${LOG_HOME}/event.%i.log</fileNamePattern>
@@ -19,10 +19,11 @@
                 </pattern>
             </providers>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
-
-    <logger name="EVENT" additivity="false" level="INFO">
-        <appender-ref ref="EVENT-FILE-APPENDER"/>
-    </logger>
 
 </included>

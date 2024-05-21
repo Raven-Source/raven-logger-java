@@ -14,6 +14,7 @@
     <conversionRule conversionWord="exceptionName" converterClass="org.raven.logger.converter.ExceptionNameConverter"/>
     <conversionRule conversionWord="tag" converterClass="org.raven.logger.converter.TagConverter"/>
     <conversionRule conversionWord="uid" converterClass="org.raven.logger.converter.UserIdConverter"/>
+    <conversionRule conversionWord="event" converterClass="org.raven.logger.converter.EventConverter"/>
 <!--    <conversionRule conversionWord="logLevel" converterClass="org.raven.logger.converter.LogLevelConverter"/>-->
 
     <property name="LOG_PATTERN" value='{
@@ -48,13 +49,14 @@
         "ip": "${hostAddress:-}",
         "hn": "${hostName:-}",
         "traceId": "%traceId",
-        "uid": "%uid",
-        "time": "%X{time}",
+        "uid": "%event{uid}",
+        "time": "%event{time, yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSXXX}",
         "appId": "${appId}",
-        "eventId": "%X{eventId:-}",
-        "value": "#asDouble{%X{eventValue}}",
-        "ext": "#tryJson{%ext}",
-        "tag": "#tryJson{%tag}",
+        "eventId": "%event{eventId}",
+        "level": "%event{level}",
+        "value": "#asDouble{%event{eventValue}}",
+        "ext": "#tryJson{%event{ext}}",
+        "tag": "#tryJson{%event{tag}}",
         "dt": 1
         }'/>
 

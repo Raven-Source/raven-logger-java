@@ -19,8 +19,4 @@
 <!--        <producerConfig>client.id=${appId}-logback</producerConfig>-->
     </appender>
 
-    <logger name="EVENT" additivity="false" level="INFO">
-        <appender-ref ref="EVENT-KAFKA-APPENDER"/>
-    </logger>
-
 </included>

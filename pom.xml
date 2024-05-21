@@ -5,17 +5,17 @@
     <parent>
         <groupId>io.github.raven-source</groupId>
         <artifactId>raven-framework</artifactId>
-        <version>4.0.7</version>
+        <version>4.0.14</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>raven-logger-java</artifactId>
     <packaging>pom</packaging>
-    <version>2.0.7</version>
+    <version>2.0.8</version>
     <modules>
         <module>raven-logger</module>
         <module>raven-logger-kafka</module>
-<!--        <module>raven-logger-test</module>-->
+        <module>raven-logger-test</module>
     </modules>
 
     <properties>
@@ -31,7 +31,7 @@
 
         <logback.version>1.2.11</logback.version>
         <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
-        <raven-framework.version>4.0.7</raven-framework.version>
+        <raven-framework.version>4.0.14</raven-framework.version>
 
     </properties>
 
@@ -86,6 +86,7 @@
             </activation>
             <modules>
                 <module>raven-logger</module>
+                <module>raven-logger-kafka</module>
             </modules>
         </profile>
 

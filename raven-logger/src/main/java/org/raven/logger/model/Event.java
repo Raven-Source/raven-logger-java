@@ -1,0 +1,124 @@
+package org.raven.logger.model;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
+import org.apache.commons.lang3.time.FastDateFormat;
+import org.raven.commons.constant.DateFormatStringConstant;
+import org.raven.commons.util.StringUtils;
+import org.raven.logger.Extender;
+import org.raven.logger.JsonUtil;
+import org.raven.logger.Tagger;
+
+import java.util.*;
+
+@Getter
+@EqualsAndHashCode
+@ToString
+@Accessors(chain = true)
+@FieldNameConstants
+public class Event {
+
+    @Setter
+    private String uid;
+
+    @Setter
+    private Date time;
+
+    @Setter
+    private String eventId;
+
+    @Setter
+    private Double value;
+
+    @Setter
+    private String level;
+
+    private Map<String, Object> ext;
+
+    private List<String> tag;
+
+    public Event(String eventId) {
+        this.eventId = eventId;
+        this.ext = new HashMap<>();
+        this.tag = new ArrayList<>();
+    }
+
+    public Event addTag(String value) {
+        tag.add(value);
+        return this;
+    }
+
+    public Event addTag(Tagger tagger) {
+        Collections.addAll(tag, tagger.getTag());
+        return this;
+    }
+
+    public Event addExt(Extender.MapExtender extender) {
+        ext.putAll(extender.getExt());
+        return this;
+    }
+
+    public Event addExtValue(String key, Number value) {
+        ext.put(key, value);
+        return this;
+    }
+
+    public Event addExtValue(String key, String value) {
+        ext.put(key, value);
+        return this;
+    }
+
+    public Event addExtValue(String key, Number[] value) {
+        ext.put(key, value);
+        return this;
+    }
+
+    public Event addExtValue(String key, String[] value) {
+        ext.put(key, value);
+        return this;
+    }
+
+    public String getProperty(String property, List<String> options) {
+        switch (property) {
+
+            case Fields.uid:
+                return uid;
+
+            case Fields.eventId:
+                return eventId;
+
+            case Fields.level:
+                return level;
+
+            case Fields.value:
+                return value == null ? StringUtils.EMPTY : value.toString();
+
+            case Fields.time:
+
+                String pattern = options == null || options.isEmpty()
+                        ? DateFormatStringConstant.ISO_OFFSET_DATE_TIME
+                        : options.get(0);
+
+                return time == null ?
+                        StringUtils.EMPTY :
+                        FastDateFormat.getInstance(pattern).format(time);
+
+            case Fields.tag:
+                return JsonUtil.toJson(tag);
+
+            case Fields.ext:
+                return JsonUtil.toJson(ext);
+
+            default:
+                return StringUtils.EMPTY;
+        }
+    }
+
+    public static Event of(String eventId) {
+        return new Event(eventId);
+    }
+}

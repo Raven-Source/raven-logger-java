@@ -25,11 +25,14 @@
         </encoder>
     </appender>
 
+    <logger name="EVENT-LOGGER" additivity="false" level="INFO">
+        <appender-ref ref="EVENT-KAFKA-APPENDER"/>
+    </logger>
+
     <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="LOG-KAFKA-APPENDER"/>
-        <appender-ref ref="EVENT-KAFKA-APPENDER"/>
     </root>
 
 </configuration>

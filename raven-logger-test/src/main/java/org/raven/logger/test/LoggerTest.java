@@ -7,6 +7,8 @@ import ch.qos.logback.core.util.StatusPrinter;
 import org.raven.logger.Coder;
 import org.raven.logger.Extender;
 import org.raven.logger.Tagger;
+import org.raven.logger.Tracker;
+import org.raven.logger.model.Event;
 import org.raven.logger.tag.NumberValueTag;
 import org.raven.logger.tag.StringValueTag;
 import org.raven.logger.tag.Tags;
@@ -27,6 +29,7 @@ public class LoggerTest {
     @PostConstruct
     public void run() {
         setup();
+        eventTest();
         coderTest();
         extenderTest();
         tagsTest();
@@ -36,6 +39,13 @@ public class LoggerTest {
 //        load("logback-spring.xml");
 
         logger = LoggerFactory.getLogger(LoggerTest.class);
+    }
+
+    public void eventTest(){
+
+        Event event = new Event("ev:eventTest");
+        event.setUid("123");
+        Tracker.event(event);
     }
 
     public void coderTest() {

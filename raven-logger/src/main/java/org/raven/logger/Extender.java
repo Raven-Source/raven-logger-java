@@ -17,7 +17,7 @@ public interface Extender<T> {
 
     public static class DefaultExtender implements Extender<Object> {
 
-        private Object ext;
+        private final Object ext;
 
         public DefaultExtender(Object ext) {
             this.ext = ext;
@@ -31,7 +31,7 @@ public interface Extender<T> {
 
     public static class MapExtender implements Extender<Map<String, Object>> {
 
-        private Map<String, Object> ext;
+        private final Map<String, Object> ext;
 
         public MapExtender() {
             ext = new HashMap<>();

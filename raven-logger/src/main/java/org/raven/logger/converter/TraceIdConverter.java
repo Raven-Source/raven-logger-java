@@ -2,7 +2,10 @@ package org.raven.logger.converter;
 
 import ch.qos.logback.classic.pattern.ClassicConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import org.apache.skywalking.apm.toolkit.trace.TraceContext;
+import org.raven.commons.util.StringUtils;
+import org.raven.logger.spi.TraceIdSupplier;
+
+import java.util.ServiceLoader;
 
 /**
  * @author yi.liang
@@ -11,8 +14,20 @@ import org.apache.skywalking.apm.toolkit.trace.TraceContext;
  */
 public class TraceIdConverter extends ClassicConverter {
 
+    private TraceIdSupplier traceIdSupplier;
+
+    public TraceIdConverter() {
+        ServiceLoader.load(TraceIdSupplier.class).forEach(traceId -> {
+            traceIdSupplier = traceId;
+        });
+    }
+
     @Override
     public String convert(ILoggingEvent iLoggingEvent) {
-        return TraceContext.traceId();
+        if (traceIdSupplier == null) {
+            return StringUtils.EMPTY;
+        } else {
+            return traceIdSupplier.traceId();
+        }
     }
 }

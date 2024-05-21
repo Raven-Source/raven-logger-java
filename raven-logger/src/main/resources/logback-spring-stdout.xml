@@ -28,7 +28,7 @@
         </encoder>
     </appender>
 
-    <logger name="EVENT" additivity="false" level="INFO">
+    <logger name="EVENT-LOGGER" additivity="false" level="INFO">
         <appender-ref ref="EVENT-STDOUT"/>
     </logger>
 

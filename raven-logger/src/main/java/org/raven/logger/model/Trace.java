@@ -1,6 +1,9 @@
 package org.raven.logger.model;
 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 import java.util.Map;
@@ -9,7 +12,11 @@ import java.util.Map;
  * @author by yanfeng
  * date 2021/9/14 18:52
  */
-@Data
+@Deprecated
+@Getter
+@EqualsAndHashCode
+@ToString
+@Accessors(chain = true)
 public class Trace {
 
     private String remote;
