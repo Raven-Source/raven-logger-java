@@ -36,6 +36,7 @@ public class AsyncDeliveryStrategy implements DeliveryStrategy {
 
                 } catch (TimeoutException e) {
                     failedDeliveryCallback.onFailedDelivery(event, e);
+                } catch (Exception ignored) {
                 }
             });
             return true;

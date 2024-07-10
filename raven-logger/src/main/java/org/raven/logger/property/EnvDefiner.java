@@ -14,7 +14,7 @@ public class EnvDefiner extends PropertyDefinerBase {
     public String getPropertyValue() {
         try {
             return System.getProperty(ENV).toLowerCase();
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
         return FieldsConstant.NO_VALUE_PLACEHOLDER;
     }

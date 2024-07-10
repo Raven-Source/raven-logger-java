@@ -1,9 +1,6 @@
 package org.raven.logger.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
 import org.apache.commons.lang3.time.FastDateFormat;
@@ -41,48 +38,48 @@ public class Event {
 
     private List<String> tag;
 
-    public Event(String eventId) {
+    public Event(@NonNull String eventId) {
         this.eventId = eventId;
         this.ext = new HashMap<>();
         this.tag = new ArrayList<>();
     }
 
-    public Event addTag(String value) {
+    public Event addTag(@NonNull String value) {
         tag.add(value);
         return this;
     }
 
-    public Event addTag(Tagger tagger) {
+    public Event addTag(@NonNull Tagger tagger) {
         Collections.addAll(tag, tagger.getTag());
         return this;
     }
 
-    public Event addExt(Extender.MapExtender extender) {
+    public Event addExt(@NonNull Extender.MapExtender extender) {
         ext.putAll(extender.getExt());
         return this;
     }
 
-    public Event addExtValue(String key, Number value) {
+    public Event addExtValue(@NonNull String key, Number value) {
         ext.put(key, value);
         return this;
     }
 
-    public Event addExtValue(String key, String value) {
+    public Event addExtValue(@NonNull String key, String value) {
         ext.put(key, value);
         return this;
     }
 
-    public Event addExtValue(String key, Number[] value) {
+    public Event addExtValue(@NonNull String key, Number[] value) {
         ext.put(key, value);
         return this;
     }
 
-    public Event addExtValue(String key, String[] value) {
+    public Event addExtValue(@NonNull String key, String[] value) {
         ext.put(key, value);
         return this;
     }
 
-    public String getProperty(String property, List<String> options) {
+    public String getProperty(@NonNull String property, List<String> options) {
         switch (property) {
 
             case Fields.uid:
@@ -118,7 +115,7 @@ public class Event {
         }
     }
 
-    public static Event of(String eventId) {
+    public static Event of(@NonNull String eventId) {
         return new Event(eventId);
     }
 }

@@ -28,6 +28,7 @@ public class LoggerTest {
 
     @PostConstruct
     public void run() {
+
         setup();
         eventTest();
         coderTest();
@@ -49,12 +50,12 @@ public class LoggerTest {
     }
 
     public void coderTest() {
-        logger.debug("Extender test", Coder.of("111"));  //debug日志记录code码111
-        logger.info("Extender test", Coder.of("110"));   //info日志记录code码110
-        logger.warn("Extender test", Coder.of("119"));
+        logger.debug("Extender test1", Coder.of("111"));  //debug日志记录code码111
+        logger.info("Extender test2", Coder.of("110"));   //info日志记录code码110
+        logger.warn("Extender test3", Coder.of("119"));
 
         // 多个参数的时候，一定要把Throwable放在最后一个参数
-        logger.error("NullPointer", Coder.of("gg"), new NullPointerException());
+        logger.error("NullPointer4", Coder.of("gg"), new NullPointerException());
         // 自定义的BusException，可以实现Coder接口，会记录到日志code字段中。
         logger.error("", new BusException("bus exception", "111"));
     }
@@ -65,29 +66,29 @@ public class LoggerTest {
         order.setId(123).setName("汉字汉字");
 
         //打印扩展字段ext
-        logger.debug("Extender test", Extender.of(order));
-        logger.info("Extender test", Extender.of(order));
-        logger.warn("Extender test", Extender.of(order));
-        logger.error("Extender test", Extender.of(order));
+        logger.debug("Extender test5", Extender.of(order));
+        logger.info("Extender test6", Extender.of(order));
+        logger.warn("Extender test7", Extender.of(order));
+        logger.error("Extender test8", Extender.of(order));
 
-        logger.info("Extender test", Extender.map().addExtValue("id", "123").addExtValue("val", 456));
+        logger.info("Extender test9", Extender.map().addExtValue("id", "123").addExtValue("val", 456));
     }
 
     public void tagsTest() {
 
-        logger.debug("log tags", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
-        logger.info("log tags", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
-        logger.warn("log tags", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
+        logger.debug("log tags10", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
+        logger.info("log tags11", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
+        logger.warn("log tags12", Tagger.of(Tags.SPING_MVC, Tags.REDIS));
         //{...,"code":"","message":"log tags","ext":null,"tag":["sping.mvc","redis"]}
 
         // 多个参数的时候，一定要把Throwable放在最后一个参数
-        logger.error("log tags", Coder.of("err-code"),
+        logger.error("log tags13", Coder.of("err-code"),
                 Tagger.of(Tags.SPING_MVC, Tags.REDIS),
                 new NullPointerException("some error")
         );
         //{...,"code":"err-code","message":"log tags","exception":"java.lang.NullPointerException","tag":["sping.mvc","redis"],"stackTrace":"java.lang.NullPointerException: some error\r\n\tat com.example.demo.controller.HomeController.tags
 
-        logger.warn("log tags", Tagger.of(
+        logger.warn("log tags14", Tagger.of(
                         StringValueTag.of("abc", "123"), NumberValueTag.of("abc", 456)
                 )
         );

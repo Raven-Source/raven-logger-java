@@ -17,8 +17,8 @@ public class TraceIdConverter extends ClassicConverter {
     private TraceIdSupplier traceIdSupplier;
 
     public TraceIdConverter() {
-        ServiceLoader.load(TraceIdSupplier.class).forEach(traceId -> {
-            traceIdSupplier = traceId;
+        ServiceLoader.load(TraceIdSupplier.class).forEach(supplier -> {
+            traceIdSupplier = supplier;
         });
     }
 
