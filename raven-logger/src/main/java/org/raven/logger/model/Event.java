@@ -3,8 +3,8 @@ package org.raven.logger.model;
 import lombok.*;
 import lombok.experimental.Accessors;
 import lombok.experimental.FieldNameConstants;
-import org.apache.commons.lang3.time.FastDateFormat;
-import org.raven.commons.constant.DateFormatStringConstant;
+import org.raven.commons.constant.DateFormatString;
+import org.raven.commons.util.DateTimeUtils;
 import org.raven.commons.util.StringUtils;
 import org.raven.logger.Extender;
 import org.raven.logger.JsonUtil;
@@ -97,12 +97,12 @@ public class Event {
             case Fields.time:
 
                 String pattern = options == null || options.isEmpty()
-                        ? DateFormatStringConstant.ISO_OFFSET_DATE_TIME
+                        ? DateFormatString.ISO_OFFSET_DATE_TIME
                         : options.get(0);
 
                 return time == null ?
                         StringUtils.EMPTY :
-                        FastDateFormat.getInstance(pattern).format(time);
+                        DateTimeUtils.format(time, pattern);
 
             case Fields.tag:
                 return JsonUtil.toJson(tag);

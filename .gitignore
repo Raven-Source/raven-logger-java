@@ -12,6 +12,7 @@ target/
 *.ipr
 *.iml
 *.iws
+.flattened-pom.xml
 
 # temp ignore
 *.log

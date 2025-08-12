@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.raven.commons.util.StringUtils;
 import org.raven.logger.spi.ObjectMapperSupplier;
-import org.raven.serializer.withJackson.ObjectMapperConfig;
+import org.raven.serializer.withJackson.ObjectMapperProvider;
 
 import java.util.ServiceLoader;
 
@@ -19,7 +19,7 @@ public final class JsonUtil {
     static ObjectMapper mapper;
 
     static {
-        mapper = ObjectMapperConfig.getObjectMapper();
+        mapper = ObjectMapperProvider.getObjectMapper();
 
         ServiceLoader.load(ObjectMapperSupplier.class).forEach(supplier -> {
             objectMapperSupplier = supplier;
