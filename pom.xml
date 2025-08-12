@@ -15,7 +15,7 @@
     <modules>
         <module>raven-logger</module>
         <module>raven-logger-kafka</module>
-<!--        <module>raven-logger-test</module>-->
+        <module>raven-logger-test</module>
     </modules>
 
     <properties>
